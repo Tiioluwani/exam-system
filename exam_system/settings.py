@@ -7,7 +7,7 @@ from permit import Permit  # We can keep this since it's being used
 load_dotenv()
 
 # Load the secret key from .env or use the fallback
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'gtiwjg^_67co3ubz#^yruiuh3z&3f)=m$36)=zw-)h(*j(f=o@')
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', '')
 
 # Debugging log for Permit API key (optional)
 print("PERMIT_API_KEY from .env:", os.getenv("PERMIT_API_KEY"))
