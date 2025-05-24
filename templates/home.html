@@ -1,0 +1,22 @@
+<!-- templates/home.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exam System Home</title>
+</head>
+<body>
+    <h1>Welcome to the Exam System</h1>
+    <p>Select an exam to begin or login to your dashboard.</p>
+
+    {% if user.is_authenticated %}
+      <p>Hello {{ user.username }}!</p>
+      <a href="{% url 'student_exams' %}">Go to Available Exams</a>
+      <br>
+      <a href="{% url 'student_results' %}">View Your Results</a>
+    {% else %}
+      <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+</body>
+</html>

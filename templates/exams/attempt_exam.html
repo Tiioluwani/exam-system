@@ -1,0 +1,41 @@
+<!-- templates/exams/attempt_exam.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Attempt Exam</title>
+</head>
+<body>
+  <h1>{{ exam.title }}</h1>
+  <form method="post">
+    {% csrf_token %}
+
+    {% for q in questions %}
+      <div style="margin-bottom: 20px;">
+        <h3>{{ forloop.counter }}. {{ q.question.text }}</h3>
+
+        {% if q.choices %}
+          {% for choice in q.choices %}
+            <div>
+              <label>
+                <input type="radio" 
+                       name="question_{{ q.question.id }}" 
+                       value="{{ choice.id }}"
+                       {% if q.answer and q.answer.selected_choice and q.answer.selected_choice.id == choice.id %}
+                         checked
+                       {% endif %}
+                >
+                {{ choice.text }}
+              </label>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p style="color: red;">⚠️ No choices available for this question.</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+
+    <button type="submit" name="submit_exam">Submit Exam</button>
+  </form>
+</body>
+</html>

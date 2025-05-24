@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Your Exam Results</h2>
+
+{% if results %}
+    <ul>
+        {% for result in results %}
+            <li>
+                Exam: {{ result.attempt.exam.title }}<br>
+                Score: {{ result.score|floatformat:2 }}%<br>
+                <a href="{% url 'view_result' result.attempt.id %}">View Details</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>You have no completed exams yet.</p>
+{% endif %}
+
+{% endblock %}

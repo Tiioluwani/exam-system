@@ -1,0 +1,25 @@
+<!-- templates/exams/student_exams.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Student Exams</title>
+  </head>
+  <body>
+    <h1>Available Exams</h1>
+
+    {% if exams %}
+    <ul>
+      {% for exam in exams %}
+      <li>
+        <strong>{{ exam.title }}</strong> -
+        <a href="{% url 'attempt_exam' exam.id %}">Start Exam</a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No exams found.</p>
+    {% endif %}
+  </body>
+</html>

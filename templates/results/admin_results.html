@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Admin - Exam Results</h2>
+
+{% if results %}
+    {% for exam_result in results %}
+        <h3>{{ exam_result.exam.title }}</h3>
+        {% if exam_result.attempts %}
+            <ul>
+                {% for attempt in exam_result.attempts %}
+                    <li>
+                        Student: {{ attempt.student.get_full_name }} ({{ attempt.student.email }})<br>
+                        Score: {{ attempt.score|floatformat:2 }}%<br>
+                        <a href="{% url 'view_result' attempt.attempt.id %}">View Attempt</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No attempts submitted for this exam.</p>
+        {% endif %}
+    {% endfor %}
+{% else %}
+    <p>No results to show.</p>
+{% endif %}
+
+{% endblock %}
